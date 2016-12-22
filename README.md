@@ -23,4 +23,4 @@ To start up server:
 	cd servlet
 	mvn jetty:run 
 
-If everything is ok you should see a funny message by clicking the following [http://localhost:8080/try/me](route) 
+If everything is ok you should see a funny message by clicking the following [route](http://localhost:8080/try/me) 
