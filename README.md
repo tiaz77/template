@@ -28,4 +28,4 @@ If everything is ok you should see a funny message by clicking the following [ro
 servlet6
 -------
 
-A servlet container (jetty) project compatible with java6
+A servlet container (jetty) project compatible with java6 and mvn2
