@@ -1,0 +1,5 @@
+- to run mvn you have to set
+
+export PATH=/usr/local/apache-maven/apache-maven-3.3.9/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_121.jdk/Contents/Home/
+cd /Users/tia/git/template/servlet/
