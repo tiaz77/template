@@ -17,7 +17,7 @@ import seminar.Student;
 
 public class Servlet extends HttpServlet {
 
-	private HashMap<String, SeminarPrinter> _routes;
+	private final HashMap<String, SeminarPrinter> _routes;
 
 	public Servlet() {
 		_routes = new HashMap<String,SeminarPrinter>();
