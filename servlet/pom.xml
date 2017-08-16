@@ -12,6 +12,13 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.3.14.v20161028</version>
+				<configuration>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
+					<scanTargets>
+					    <scanTarget>target/classes</scanTarget>
+					    <scanTarget>target/classes</scanTarget>
+					</scanTargets>						
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -36,6 +43,5 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-
 	</dependencies>
 </project>

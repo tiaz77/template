@@ -18,8 +18,8 @@ public class ServletTest {
 	
 	@Test
 	public void testWrongUrl() throws ServletException, IOException {
-		MyHttpServletReponse output = sendRequest("");
-		assertEquals("<h1>wrong url</h1>", output.getOutput());
+		MyHttpServletReponse response = sendRequest("/wrong");
+		assertThat(response.getOutput(), CoreMatchers.is("<h1>wrong url</h1>"));
 	}
 
 	@Test
