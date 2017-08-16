@@ -8,36 +8,33 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import process.Context;
+import process.SeminarRequestProcess;
 import seminar.CsvSeminarPrinter;
 import seminar.HtmlSeminarPrinter;
 import seminar.RawSeminarPrinter;
-import seminar.Seminar;
-import seminar.SeminarPrinter;
-import seminar.Student;
 
 public class Servlet extends HttpServlet {
 
-	private final HashMap<String, SeminarPrinter> _routes;
+	private final HashMap<String, SeminarRequestProcess> _process;
 
 	public Servlet() {
-		_routes = new HashMap<String,SeminarPrinter>();
-		_routes.put("/course/html", new HtmlSeminarPrinter());
-		_routes.put("/course/csv", new CsvSeminarPrinter());
-		_routes.put("/course/raw", new RawSeminarPrinter());
+		_process = new HashMap<String,SeminarRequestProcess>();
+		_process.put("/course/html", new SeminarRequestProcess(new HtmlSeminarPrinter(), "text/html"));
+		_process.put("/course/csv", new SeminarRequestProcess(new CsvSeminarPrinter(), "text/csv"));
+		_process.put("/course/raw", new SeminarRequestProcess(new RawSeminarPrinter(), "text/plain"));
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Seminar seminar = new Seminar("Math", "2", "Math Level 1", "Mendrisio", "25.12.2015", 20);
-		seminar.addEnrollment(new Student("Mattia", "Cattaneo"));
-		seminar.addEnrollment(new Student("Enrico", "Mazzi"));
+		Context context = new Context();
+		context.setHttpServletRequest(req);
+		context.setHttpServletResponse(resp);
 		
-		
-		if (_routes.containsKey(req.getRequestURI())) {
-			resp.getWriter().write(_routes.get(req.getRequestURI()).render(seminar));
+		if (_process.containsKey(req.getRequestURI())) {
+			_process.get(req.getRequestURI()).execute(context);
 		} else {
 			resp.getWriter().write("<h1>wrong url</h1>");
-			
 		}
 		
 		

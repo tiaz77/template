@@ -17,7 +17,7 @@ public class RawSeminarPrinter extends SeminarPrinter {
 
 	@Override
 	public String print(Student student) {
-		return "Stundent: " + student.getFirstname() + " " + student.getName() + "\n";
+		return "Student: " + student.getFirstname() + " " + student.getName() + "\n";
 	}
 
 	@Override
